@@ -16,17 +16,14 @@ import {
 } from "@/components/ui/popover";
 import React from "react";
 import { useNavigate, useParams } from "react-router";
-// import { useBorrowBookByIdMutation } from "@/redux/api/baseApi";
 import { ChevronDownIcon, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-// import { useTheme } from "@/components/theme-provider";
-// import Loader from "@/components/loading/Loader";
 import Swal from "sweetalert2";
 import { useBorrowBooksByIdMutation } from "@/api/baseApi";
 import { useTheme } from "@/provider/theme-provider";
 
 const BorrowBook = () => {
-    const [borrowBookById, { isLoading }] = useBorrowBooksByIdMutation();
+  const [borrowBookById, { isLoading }] = useBorrowBooksByIdMutation();
   const [open, setOpen] = React.useState(false);
   const [date, setDate] = React.useState<Date | undefined>(undefined);
   const [dateError, setDateError] = React.useState(false);
@@ -102,110 +99,110 @@ const BorrowBook = () => {
     }
   };
 
-    return (
-        <div>
-              <div className=" mx-auto mt-10 p-6 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl space-y-6">
-      <h1 className="text-2xl font-bold text-center text-primary">
-        Borrow Book
-      </h1>
+  return (
+    <div>
+      <div className=" mx-auto mt-10 p-6 bg-white dark:bg-zinc-900 rounded-2xl shadow-xl space-y-6">
+        <h1 className="text-2xl font-bold text-center text-primary">
+          Borrow Book
+        </h1>
 
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-          <FormField
-            control={form.control}
-            name="book"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Book ID</FormLabel>
-                <FormControl>
-                  <Input {...field} disabled />
-                </FormControl>
-              </FormItem>
-            )}
-          />
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+            <FormField
+              control={form.control}
+              name="book"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Book ID</FormLabel>
+                  <FormControl>
+                    <Input {...field} disabled />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
 
-          {/* Quantity */}
-          <FormField
-            control={form.control}
-            rules={{ required: "Quantity number is required" }}
-            name="quantity"
-            render={({ field, fieldState }) => (
-              <FormItem>
-                <FormLabel>Quantity</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Copies Of Book"
-                    type="number"
-                    min={1}
-                    {...field}
-                    onChange={(e) =>
-                      field.onChange(
-                        e.target.value === "" ? "" : Number(e.target.value)
-                      )
+            {/* Quantity */}
+            <FormField
+              control={form.control}
+              rules={{ required: "Quantity number is required" }}
+              name="quantity"
+              render={({ field, fieldState }) => (
+                <FormItem>
+                  <FormLabel>Quantity</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Copies Of Book"
+                      type="number"
+                      min={1}
+                      {...field}
+                      onChange={(e) =>
+                        field.onChange(
+                          e.target.value === "" ? "" : Number(e.target.value)
+                        )
+                      }
+                    />
+                  </FormControl>
+                  {fieldState.error && (
+                    <p className="text-sm text-red-500 mt-1">
+                      {fieldState.error.message}
+                    </p>
+                  )}
+                </FormItem>
+              )}
+            />
+
+            {/* Due Date */}
+            <FormItem>
+              <FormLabel>Due Date</FormLabel>
+              <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    id="date"
+                    className={cn(
+                      "justify-between font-normal w-full",
+                      !date && "text-muted-foreground",
+                      dateError && "border-red-500"
+                    )}
+                  >
+                    {date ? date.toLocaleDateString() : "Select date"}
+                    <ChevronDownIcon />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="w-auto overflow-hidden p-0"
+                  align="start"
+                >
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    captionLayout="dropdown"
+                    onSelect={(date) => {
+                      setDate(date);
+                      setOpen(false);
+                      setDateError(false);
+                    }}
+                    disabled={(date) =>
+                      date < new Date(new Date().setHours(0, 0, 0, 0))
                     }
                   />
-                </FormControl>
-                {fieldState.error && (
-                  <p className="text-sm text-red-500 mt-1">
-                    {fieldState.error.message}
-                  </p>
-                )}
-              </FormItem>
-            )}
-          />
+                </PopoverContent>
+              </Popover>
+              {dateError && (
+                <p className="text-sm text-red-500 mt-1">
+                  Please select a due date
+                </p>
+              )}
+            </FormItem>
 
-          {/* Due Date */}
-          <FormItem>
-            <FormLabel>Due Date</FormLabel>
-            <Popover open={open} onOpenChange={setOpen}>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  id="date"
-                  className={cn(
-                    "justify-between font-normal w-full",
-                    !date && "text-muted-foreground",
-                    dateError && "border-red-500"
-                  )}
-                >
-                  {date ? date.toLocaleDateString() : "Select date"}
-                  <ChevronDownIcon />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent
-                className="w-auto overflow-hidden p-0"
-                align="start"
-              >
-                <Calendar
-                  mode="single"
-                  selected={date}
-                  captionLayout="dropdown"
-                  onSelect={(date) => {
-                    setDate(date);
-                    setOpen(false);
-                    setDateError(false);
-                  }}
-                  disabled={(date) =>
-                    date < new Date(new Date().setHours(0, 0, 0, 0))
-                  }
-                />
-              </PopoverContent>
-            </Popover>
-            {dateError && (
-              <p className="text-sm text-red-500 mt-1">
-                Please select a due date
-              </p>
-            )}
-          </FormItem>
-
-          <Button variant="outline" type="submit" className="w-full">
-            {isLoading ? <Loader2></Loader2> : "Confirm Borrow"}
-          </Button>
-        </form>
-      </Form>
+            <Button variant="outline" type="submit" className="w-full">
+              {isLoading ? <Loader2></Loader2> : "Confirm Borrow"}
+            </Button>
+          </form>
+        </Form>
+      </div>
     </div>
-        </div>
-    );
+  );
 };
 
 export default BorrowBook;
