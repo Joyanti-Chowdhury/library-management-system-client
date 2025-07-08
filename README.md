@@ -28,14 +28,14 @@ A responsive and modern Library Management System frontend built using **React**
 ## 🛠️ Installation
 
 ```bash
-git clone https://github.com/yourusername/library-management-frontend.git
-cd library-management-frontend
+git clone https://github.com/Joyanti-Chowdhury/library-management-system-client
+cd library-management-system-client
 npm install
 
 npm run dev       
 
-// src/services/api.ts
-baseUrl: 'http://localhost:5000/api', // replace with your actual backend URL
+// src/api/baseApi.ts
+baseUrl: 'http://localhost:5000/api', 
 
 src/
 ├── app/                 # Redux store setup
@@ -70,7 +70,6 @@ RTK Query handles data fetching, caching, and syncing with the backend.
 
 
 
-Your GitHub
 
 
 
