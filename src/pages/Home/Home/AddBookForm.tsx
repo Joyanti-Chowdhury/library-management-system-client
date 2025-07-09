@@ -50,7 +50,7 @@ const AddBookForm = () => {
           buttonsStyling: false,
         });
         await swalWithBootstrapButtons.fire({
-          title: "Created",
+          title: "Added",
           text: `${res.message}`,
           icon: "success",
         });
@@ -58,7 +58,7 @@ const AddBookForm = () => {
         navigate("/books");
       }
     } catch (error) {
-      console.error("Error creating book:", error);
+      console.error("Error Adding book:", error);
     }
   };
 
@@ -80,7 +80,7 @@ const AddBookForm = () => {
                   <FormLabel>Title</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Enter book title"
+                      placeholder="Title"
                       {...field}
                       value={field.value || ""}
                     />
@@ -104,7 +104,7 @@ const AddBookForm = () => {
                   <FormLabel>Author</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Author's name"
+                      placeholder="Author"
                       {...field}
                       value={field.value || ""}
                     />
@@ -163,7 +163,7 @@ const AddBookForm = () => {
                   <FormLabel>ISBN</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="ISBN number"
+                      placeholder="ISBN"
                       {...field}
                       value={field.value || ""}
                     />
@@ -212,7 +212,7 @@ const AddBookForm = () => {
                   <FormLabel>Description</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Write a short description"
+                      placeholder="Description"
                       {...field}
                       value={field.value || ""}
                     />
@@ -228,7 +228,7 @@ const AddBookForm = () => {
 
             {/* Submit Button */}
             <Button  type="submit" className="w-full mt-4 bg-black">
-              {isLoading ? <Loader2 /> : "Create Book"}
+              {isLoading ? <Loader2 /> : "Add Book"}
             </Button>
           </form>
         </Form>

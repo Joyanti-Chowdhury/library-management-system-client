@@ -16,7 +16,7 @@ baseQuery: fetchBaseQuery({ baseUrl: 'https://library-management-system-two-tawn
  
     createBook: builder.mutation({
       query:(bookData) => ({
-        url:"/create-book",
+        url:"/books",
         method:"POST",
         body:bookData
       }),
