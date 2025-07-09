@@ -10,6 +10,7 @@ export default function AllBooks() {
   }
   return (
     <div>
+      <h1 className="text-5xl font-bold mb-6 mt-6 text-center mx-auto text-amber-500">All Books</h1>
       <BookTable books={data?.data}></BookTable>
     </div>
   );

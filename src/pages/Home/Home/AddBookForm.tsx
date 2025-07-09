@@ -227,7 +227,7 @@ const AddBookForm = () => {
             />
 
             {/* Submit Button */}
-            <Button variant="secondary" type="submit" className="w-full mt-4">
+            <Button  type="submit" className="w-full mt-4 bg-black">
               {isLoading ? <Loader2 /> : "Create Book"}
             </Button>
           </form>
