@@ -25,7 +25,7 @@ baseQuery: fetchBaseQuery({ baseUrl: 'https://library-management-system-two-tawn
     updateBook:builder.mutation({
       query:({id, data}) => ({
         url:`/books/${id}`,
-        method:"PATCH",
+        method:"PUT",
         body:data
       }),
       invalidatesTags: ['book']

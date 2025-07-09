@@ -96,7 +96,7 @@ const BookTable = ({ books }: IProps) => {
               <Badge variant="secondary">{book.isbn}</Badge>
             </TableCell>
             <TableCell className="text-center whitespace-nowrap">
-              <Badge variant={book.available ? "default" : "destructive"}>
+              <Badge variant={book.available ? "secondary" : "destructive"}>
                 {book.available ? "Available" : "Not Available"}
               </Badge>
             </TableCell>
