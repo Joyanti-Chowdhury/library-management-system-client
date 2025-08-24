@@ -1,4 +1,4 @@
-
+import banner from '../../../assets/banner.jpeg'
 
 const HeroSection = () => {
     return (
@@ -24,9 +24,10 @@ const HeroSection = () => {
         {/* Right Image */}
         <div className="flex-1">
           <img
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80"
-            alt="Library"
-            className="w-full h-auto rounded-xl shadow-md"
+          src={banner}
+            // src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80"
+            // alt="Library"
+            className="w-full h-[300px] rounded-xl shadow-md"
           />
         </div>
       </div>

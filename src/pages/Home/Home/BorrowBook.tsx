@@ -14,7 +14,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { ChevronDownIcon, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -24,8 +24,8 @@ import { useTheme } from "@/provider/theme-provider";
 
 const BorrowBook = () => {
   const [borrowBookById, { isLoading }] = useBorrowBooksByIdMutation();
-  const [open, setOpen] = React.useState(false);
-  const [date, setDate] = React.useState<Date | undefined>(undefined);
+  const [open, setOpen] =useState(false);
+  const [date, setDate] = useState<Date | undefined>(undefined);
   const [dateError, setDateError] = React.useState(false);
   const { theme } = useTheme();
   const { id } = useParams();
@@ -33,7 +33,9 @@ const BorrowBook = () => {
   const form = useForm({
     defaultValues: {
       book: id,
-      quantity: 0,
+      quantity: 1,
+  
+      
     },
     mode: "onChange",
   });
@@ -47,7 +49,7 @@ const BorrowBook = () => {
 
     const borrowData = {
       ...values,
-      dueDate: date,
+      dueDate: date
     };
     try {
       console.log("Borrow Data:", borrowData);
@@ -73,7 +75,7 @@ const BorrowBook = () => {
         });
         form.reset({
           book: id,
-          quantity: 0,
+          quantity: 1,
         });
         setDate(undefined);
         navigate("/borrow-summary");
@@ -124,7 +126,7 @@ const BorrowBook = () => {
             {/* Quantity */}
             <FormField
               control={form.control}
-              rules={{ required: "Quantity number is required" }}
+              rules={{ required: "Quantity of book is required" }}
               name="quantity"
               render={({ field, fieldState }) => (
                 <FormItem>
@@ -195,8 +197,8 @@ const BorrowBook = () => {
               )}
             </FormItem>
 
-            <Button variant="outline" type="submit" className="w-full">
-              {isLoading ? <Loader2></Loader2> : "Confirm Borrow"}
+            <Button type="submit" className="w-full bg-black text-white">
+              {isLoading ? <Loader2></Loader2> : "Borrow Book"}
             </Button>
           </form>
         </Form>

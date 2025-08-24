@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/table";
 
 import { Button } from "@/components/ui/button";
-import { EyeIcon, PencilIcon, Trash2Icon } from "lucide-react";
+import {  PencilIcon, Trash2Icon } from "lucide-react";
 import { Link } from "react-router";
 
 import Swal from "sweetalert2";
@@ -105,11 +105,11 @@ const BookTable = ({ books }: IProps) => {
             </TableCell>
             <TableCell className="text-center whitespace-nowrap">
               <div className="flex flex-wrap justify-center sm:justify-end gap-2">
-                <Link to={`/books/${book._id}`}>
+                {/* <Link to={`/books/${book._id}`}>
                   <Button variant="outline" size="sm">
                     <EyeIcon className="w-4 h-4 mr-1" /> View
                   </Button>
-                </Link>
+                </Link> */}
                 <Link to={`/edit-book/${book._id}`}>
                   <Button variant="secondary" size="sm">
                     <PencilIcon className="w-4 h-4 mr-1" /> Edit
